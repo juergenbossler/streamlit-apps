@@ -359,7 +359,6 @@ for i in range(len(values_AR_old)):
     # Berechnung Gruppenunterschied AR/IR von kleinsten zu größten Gruppen
     diff_value = (values_AR_old[-1]) - (values_IR_old[-1])
     if ralu_choice == 'use full tolerance':
-        print('use full tolerance')
         # Kugelabmaß 0 für Gruppenunterschied kleiner-gleich Ralu/2
         if diff_value in range((-ralu_diff), (ralu_diff + 1)):
             diff_value = 0
@@ -394,7 +393,6 @@ for i in range(len(buffer_list_AR)):
     # Berechnung Gruppenunterschied AR/IR von kleinsten zu größten Gruppen
     diff_value = (buffer_list_AR[-1]) - (buffer_list_IR[-1])
     if ralu_choice == 'use full tolerance':
-        print('use full tolerance')
         # Kugelabmaß 0 für Gruppenunterschied kleiner-gleich Ralu/2
         if diff_value in range((-ralu_diff), (ralu_diff + 1)):
             diff_value = 0
@@ -434,8 +432,7 @@ with col4:
 
        # Auflistung Topf
        counter = collections.Counter(diff)
-       # print("Benötigte Kugelabmaße: ",sorted(counter.keys()))
-       # print("Zähler Kugelabmaße: ",counter)
+
        kugeldurchmesser = 0
        for elem in sorted(counter.items()):
            kugeldurchmesser += 1
@@ -443,6 +440,18 @@ with col4:
            st.write(kugeldurchmesser, " ", "different ball sizes needed!")
        else:
            st.write(kugeldurchmesser, " ", "ball size needed!")
+
+       # Auflistung benötigter Kugelabmaße
+
+       # Auflistung Topf
+
+       counter = collections.Counter(diff)
+
+       kugeldurchmesser = 0
+       for elem in sorted(counter.items()):
+           st.write("ball size: ", elem[0], " µm"" --> ", elem[1], "pce")
+           kugeldurchmesser += 1
+
 
        # Histogrammm Kugelabmaße (Puffer)
        fig6 = plt.figure(figsize=(8, 4))
@@ -467,6 +476,14 @@ with col4:
        else:
            st.write(kugeldurchmesser_buff, " ", "ball size needed!")
 
+       # Auflistung Topf
+
+       counter = collections.Counter(diff_buff)
+
+       kugeldurchmesser = 0
+       for elem in sorted(counter.items()):
+           st.write("ball size: ", elem[0], " µm"" --> ", elem[1], "pce")
+           kugeldurchmesser += 1
 
        # Zeitverlauf Kugelabmaße
        st.subheader("Ball size sequence plots (auto pairing)")
