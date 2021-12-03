@@ -224,7 +224,8 @@ with col2:
         plt.title("group number OR (lot size)")
         plt.xlabel("value")
         plt.ylabel("frequency")
-        plt.axis([0, 31, 0, n / 3])
+        plt.autoscale(enable=True, axis='y')
+        #plt.axis([0, 31, 0, n / 3])
         x_scale = list(range(0, 32))
         plt.xticks(x_scale)
         st.pyplot(fig1)
@@ -236,7 +237,8 @@ with col2:
         plt.title("group number OR (first buffer filling)")
         plt.xlabel("value")
         plt.ylabel("frequency")
-        plt.axis([0, 31, 0, n / 10])
+        plt.autoscale(enable=True, axis='y')
+        #plt.axis([0, 31, 0, n / 10])
         x_scale = list(range(0, 32))
         plt.xticks(x_scale)
         st.pyplot(fig2)
@@ -249,7 +251,8 @@ with col2:
         plt.title("group number IR (lot size)")
         plt.xlabel("value")
         plt.ylabel("frequency")
-        plt.axis([0, 31, 0, n / 3])
+        plt.autoscale(enable=True, axis='y')
+        #plt.axis([0, 31, 0, n / 3])
         x_scale = list(range(0, 32))
         plt.xticks(x_scale)
         st.pyplot(fig3)
@@ -260,7 +263,8 @@ with col2:
         plt.title("group number IR (first buffer filling)")
         plt.xlabel("value")
         plt.ylabel("frequency")
-        plt.axis([0, 31, 0, n / 10])
+        plt.autoscale(enable=True, axis='y')
+        #plt.axis([0, 31, 0, n / 10])
         x_scale = list(range(0, 32))
         plt.xticks(x_scale)
         st.pyplot(fig4)
@@ -308,13 +312,15 @@ with col3:
         st.write('gaugeing time OR:', AR_time_all)
         st.write('gaugeing time IR:', IR_time_all)
 
-    with st.expander('Sorting'):
+    with st.expander('Sorting on needles (optional)'):
 
         st.header('Needles (lot size)')
         st.subheader('Needles OR')
 
         # Auflistung Stabmengen Gesamtmenge
         st.write("(", pcsperneedle, " pcs/needle)")
+
+        needle_amount_AR = []
 
         counter = collections.Counter(values_AR_old)
         for elem in sorted(counter.items()):
@@ -324,12 +330,18 @@ with col3:
             else:
                 needle_value = "needle"
             st.write("group: ", elem[0], " "" --> ", needles, " ", needle_value)
+            needle_amount_AR.append(needles)
+
+        all_needles_AR = sum(needle_amount_AR)
+        st.metric('Number of needles needed', all_needles_AR)
 
 
         st.subheader('Needles IR')
 
         # Auflistung Stabmengen Gesamtmenge
         st.write("(", pcsperneedle, " pcs/needle)")
+
+        needle_amount_IR = []
 
         counter = collections.Counter(values_IR_old)
         for elem in sorted(counter.items()):
@@ -339,6 +351,10 @@ with col3:
             else:
                 needle_value = "needle"
             st.write("group: ", elem[0], " "" --> ", needles, " ", needle_value)
+            needle_amount_IR.append(needles)
+
+        all_needles_IR = sum(needle_amount_IR)
+        st.metric('Number of needles needed', all_needles_IR)
 
 
 # Automtisches Verpaaren mit Puffer
@@ -444,7 +460,7 @@ for i in range(len(buffer_list_AR)):
 with col4:
 
     with st.expander('AUTO Pairing'):
-       st.header("Pairing")
+       st.header("AUTO Pairing")
        st.subheader("Ball sizes plot")
 
        # Histogrammm Kugelabmaße (Puffer)
@@ -453,7 +469,8 @@ with col4:
        plt.title("Ball sizes for AUTO pairing [µm]")
        plt.xlabel("Nominal size + [µm]")
        plt.ylabel("Frequency")
-       plt.axis([-10, 10, 0, n / 5])
+       plt.autoscale(enable=True, axis='y')
+       #plt.axis([-10, 10])#, 0, n / 5])
        x_scale = list(range(-10, 11))
        plt.xticks(x_scale)
        st.pyplot(fig6)
