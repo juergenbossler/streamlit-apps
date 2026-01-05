@@ -1,10 +1,8 @@
 import streamlit as st
 import numpy as np
 import plotly.express as px
-#import matplotlib.pyplot as plt
 from PIL import Image
 import pandas as pd
-#import glob
 
 # SETTING PAGE CONFIG TO WIDE MODE
 st.set_page_config(page_title="Herlazhofen Klima 2007-2025", page_icon='GMD-Digital_icon.png', initial_sidebar_state='collapsed', layout="wide")
@@ -126,5 +124,6 @@ fig.update_xaxes(
 )
 
 st.plotly_chart(fig, use_container_width=True)
+
 
 
