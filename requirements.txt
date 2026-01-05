@@ -1,5 +1,6 @@
 plotly==5.4.0
-streamlit==1.2.0
+streamlit
 Pillow
 scipy
+
 
