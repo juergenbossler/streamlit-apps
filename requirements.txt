@@ -1,8 +1,9 @@
-plotly==5.4.0
+plotly
 streamlit
 Pillow
 scipy
 pandas
+
 
 
 
